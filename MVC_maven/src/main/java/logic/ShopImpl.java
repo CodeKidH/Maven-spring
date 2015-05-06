@@ -13,4 +13,8 @@ public class ShopImpl implements Shop{
 	public List<Item> getItemList() {
 		return this.itemCatalog.getItemList();
 	}
+	
+	public Item getItemByItemId(Integer itemId){
+		return this.itemCatalog.getItemByItemId(itemId);
+	}
 }

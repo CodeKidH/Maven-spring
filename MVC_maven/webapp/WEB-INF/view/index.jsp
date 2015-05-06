@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page session="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="css/shopping3-1.css">
+<%@ include file="/WEB-INF/view/jsp_header.jsp"%>
 <html>
 <head>
 <title>상품 목록 화면</title>
@@ -17,8 +15,9 @@
 	</tr>
 	<c:forEach items="${itemList}" var="item">
 		<tr class="record">
-			<td align="center">${item.carNo}</td>
-			<td align="left">${item.carName}</td>
+			<td align="center">${item.itemId}</td>
+			<td align="left"><a href="detail.html?itemId=${item.itemId}">${item.itemName}</a></td>
+			<td align="right">${item.price}원</td>
 		</tr>
 	</c:forEach>
 </table>

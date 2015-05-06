@@ -15,4 +15,8 @@ public class ItemCatalogImpl implements ItemCatalog {
 	public List<Item> getItemList() {
 		return this.itemDao.findAll();
 	}
+	
+	public Item getItemByItemId(Integer itemId){
+		return this.itemDao.findByPrimaryKey(itemId);
+	}
 }

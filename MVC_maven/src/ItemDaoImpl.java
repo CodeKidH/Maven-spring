@@ -9,7 +9,6 @@ import logic.Item;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import org.springframework.dao.EmptyResultDataAccessException;
 
 public class ItemDaoImpl implements ItemDao {
 
@@ -20,21 +19,16 @@ public class ItemDaoImpl implements ItemDao {
 	}
 
 	private static final String SELECT_ALL = "SELECT item_id, item_name, price, description, picture_url FROM item";
-	
+
 	public List<Item> findAll() {
 		RowMapper<Item> mapper = new BeanPropertyRowMapper<Item>(Item.class);
-		
 		return this.template.query(ItemDaoImpl.SELECT_ALL, mapper);
 	}
-	
-	private static final String SELECT_BY_PRIMARYKEY = "SELECT item_id, item_name, price, description, picture_url FROM item WHERE item_id = ?";
-	public Item findByPrimaryKey(Integer itemId){
+
+	private static final String SELECT_BY_PRIMARY_KEY = "SELECT item_id, item_name, price, description, picture_url FROM item WHERE item_id = ?";
+
+	public Item findByPrimaryKey(Integer itemId) {
 		RowMapper<Item> mapper = new BeanPropertyRowMapper<Item>(Item.class);
-		try{
-			return this.template.queryForObject(SELECT_BY_PRIMARYKEY, mapper, itemId);
-		}catch(EmptyResultDataAccessException e){
-			return null;
-		}
+		return this.template.queryForObject(SELECT_BY_PRIMARY_KEY, mapper, itemId);
 	}
-		
 }

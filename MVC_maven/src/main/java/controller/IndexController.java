@@ -22,19 +22,16 @@ public class IndexController implements Controller {
 	}
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//��ǰ ��� ���� ���
+		
 		List<Item> itemList = this.shopService.getItemList();
-
-		//�� ��
+		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("itemList", itemList);
-
-		//��ȯ���� ModelAndView �ν��Ͻ� ��
+		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/WEB-INF/index.jsp");
+		modelAndView.setViewName("index");
 		modelAndView.addAllObjects(model);
-
+		
 		return modelAndView;
 	}
 }

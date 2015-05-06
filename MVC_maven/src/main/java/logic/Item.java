@@ -6,30 +6,55 @@ public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer carNo;
-	
-	private String carName;
+	private Integer itemId;
 
-	public Integer getCarNo() {
-		return carNo;
+	private String itemName;
+
+	private Integer price;
+
+	private String description;
+
+	private String pictureUrl;
+
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setCarNo(Integer carNo) {
-		this.carNo = carNo;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getCarName() {
-		return carName;
+	public Integer getItemId() {
+		return this.itemId;
 	}
 
-	public void setCarName(String carName) {
-		this.carName = carName;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
-	
-	
-	
+	public String getItemName() {
+		return this.itemName;
+	}
 
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getPictureUrl() {
+		return this.pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
+	public Integer getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
 	
 	
 }
