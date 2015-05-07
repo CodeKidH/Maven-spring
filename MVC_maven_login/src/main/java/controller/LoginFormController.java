@@ -49,15 +49,15 @@ public class LoginFormController {
 		}
 
 		try {
-			// ìœ ì € ì •ë³´ ê²€ìƒ‰
+			// À¯ÀúÁ¤º¸ °Ë»ö
 			User loginUser = this.shopService.getUserByUserIdAndPassword(user.getUserId(), user.getPassword());
-
-			// ìœ ì €ê°€ ìˆì„ ë•Œ
+			
+			// À¯Àú°¡ ÀÖÀ»¶§
 			modelAndView.setViewName("loginSuccess");
 			modelAndView.addObject("loginUser", loginUser);
 			return modelAndView;
 		} catch (EmptyResultDataAccessException e) {
-			// ìœ ì €ê°€ ì—†ì„ ë•Œ
+			// À¯Àú°¡ ¾øÀ»¶§
 			bindingResult.reject("error.login.user");
 			modelAndView.getModel().putAll(bindingResult.getModel());
 			return modelAndView;
