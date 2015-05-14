@@ -13,11 +13,6 @@ public class ShopImpl implements Shop {
 	@Autowired
 	private ItemCatalog itemCatalog;
 
-	
-
-	
-
-	
 
 	public List<Item> getItemList() {
 		return this.itemCatalog.getItemList();
