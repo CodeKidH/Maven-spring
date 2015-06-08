@@ -37,7 +37,7 @@ public class ItemDaoImpl implements ItemDao {
 		this.template = new SimpleJdbcTemplate(dataSource);
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
+	
 	private static final String SELECT_ALL = "SELECT item_id, item_name, price, description FROM item";
 
 	public List<Item> findAll() {

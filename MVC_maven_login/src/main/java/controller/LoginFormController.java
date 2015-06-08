@@ -31,7 +31,7 @@ public class LoginFormController {
 	public String toLoginView() {
 		return "login";
 	}
-
+	
 	@ModelAttribute
 	public User setUpForm() {
 		return new User();
@@ -41,13 +41,13 @@ public class LoginFormController {
 	public ModelAndView onSubmit(User user, BindingResult bindingResult) {
 
 		this.loginValidator.validate(user, bindingResult);
-
+		
 		ModelAndView modelAndView = new ModelAndView();
 		if (bindingResult.hasErrors()) {
 			modelAndView.getModel().putAll(bindingResult.getModel());
 			return modelAndView;
 		}
-
+		
 		try {
 			// 유저정보 검색
 			User loginUser = this.shopService.getUserByUserIdAndPassword(user.getUserId(), user.getPassword());

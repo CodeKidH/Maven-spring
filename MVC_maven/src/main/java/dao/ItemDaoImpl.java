@@ -19,7 +19,7 @@ public class ItemDaoImpl implements ItemDao {
 		this.template = new SimpleJdbcTemplate(dataSource);
 	}
 
-	private static final String SELECT_ALL = "SELECT item_id, item_name, price, description, picture_url FROM item";
+	private static final String SELECT_ALL = "SELECT * FROM car";
 	
 	public List<Item> findAll() {
 		RowMapper<Item> mapper = new BeanPropertyRowMapper<Item>(Item.class);
@@ -27,7 +27,7 @@ public class ItemDaoImpl implements ItemDao {
 		return this.template.query(ItemDaoImpl.SELECT_ALL, mapper);
 	}
 	
-	private static final String SELECT_BY_PRIMARYKEY = "SELECT item_id, item_name, price, description, picture_url FROM item WHERE item_id = ?";
+	private static final String SELECT_BY_PRIMARYKEY = "SELECT * FROM car WHERE carno = ?";
 	public Item findByPrimaryKey(Integer itemId){
 		RowMapper<Item> mapper = new BeanPropertyRowMapper<Item>(Item.class);
 		try{

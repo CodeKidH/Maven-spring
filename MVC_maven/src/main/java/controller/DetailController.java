@@ -21,9 +21,9 @@ public class DetailController {
 	}
 	
 	@RequestMapping
-	public ModelAndView detailItem(Integer itemId){
+	public ModelAndView detailItem(Integer carNo){
 		
-		Item item = this.shopService.getItemByItemId(itemId);
+		Item item = this.shopService.getItemByItemId(carNo);
 		
 		Map<String, Object>model = new HashMap<String, Object>();
 		model.put("item",item);
