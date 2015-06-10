@@ -27,7 +27,7 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 
-	@RequestMapping
+	@RequestMapping(value="/item/index")
 	public ModelAndView index() {
 
 		// 상품목록정보 취득
@@ -44,7 +44,7 @@ public class ItemController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/item/search",method = RequestMethod.POST)
 	public ModelAndView search(String itemName) {
 		if (itemName == null || itemName.equals("")) {
 			// 검색상품명이 없는 경우, 상품 전체를 반환한다
@@ -64,14 +64,14 @@ public class ItemController {
 		return modelAndView;
 	}
 
-	@RequestMapping
+	@RequestMapping(value="/item/create")
 	public ModelAndView create() {
 		ModelAndView modelAndView = new ModelAndView("add");
 		modelAndView.addObject(new Item());
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/item/register",method = RequestMethod.POST)
 	public ModelAndView register(@Valid Item item, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("add");
@@ -82,7 +82,7 @@ public class ItemController {
 		return this.index();
 	}
 
-	@RequestMapping
+	@RequestMapping(value="/item/edit")
 	public ModelAndView edit(Integer itemId) {
 		ModelAndView modelAndView = new ModelAndView("update");
 		Item item = this.itemService.getItemByItemId(itemId);
@@ -90,7 +90,7 @@ public class ItemController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/item/update",method = RequestMethod.POST)
 	public ModelAndView update(@Valid Item item, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("update");
@@ -101,7 +101,7 @@ public class ItemController {
 		return this.index();
 	}
 
-	@RequestMapping
+	@RequestMapping(value="/item/confirm")
 	public ModelAndView confirm(Integer itemId) {
 		ModelAndView modelAndView = new ModelAndView("delete");
 		Item item = this.itemService.getItemByItemId(itemId);
@@ -109,39 +109,11 @@ public class ItemController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/item/delete",method = RequestMethod.POST)
 	public ModelAndView delete(Item item) {
 		this.itemService.deleteItem(item);
 		return this.index();
 	}
 
-	@RequestMapping
-	public void image(Integer itemId, HttpServletResponse response) {
-		response.setContentType("image/jpeg");
-		InputStream picture = null;
-		OutputStream os = null;
-		BufferedInputStream bis = null;
-		try {
-			picture = this.itemService.getPicture(itemId);
-			os = response.getOutputStream();
-			bis = new BufferedInputStream(picture);
-			int data;
-			while ((data = bis.read()) != -1) {
-				os.write(data);
-			}
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} finally {
-			try {
-				if (picture != null) {
-					picture.close();
-					os.close();
-					bis.close();
-				}
-			} catch (IOException e) {
-				// close 안 되는 것뿐이므로 무시한다
-			}
-
-		}
-	}
+	
 }

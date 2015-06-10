@@ -52,7 +52,7 @@ public class ItemDaoImpl implements ItemDao {
 		return this.template.queryForObject(SELECT_BY_PRIMARY_KEY, mapper, itemId);
 	}
 
-	private static final String INSERT = "INSERT INTO item(item_name, price, description, picture) values (?, ?, ?, ?)";
+	private static final String INSERT = "INSERT INTO item(item_name, price, description) values (?, ?, ?)";
 
 	public void create(final Item item) {
 		this.jdbcTemplate.execute(INSERT, new AbstractLobCreatingPreparedStatementCallback(lobHandler) {
@@ -63,11 +63,7 @@ public class ItemDaoImpl implements ItemDao {
 				ps.setString(++index, item.getItemName());
 				ps.setInt(++index, item.getPrice().intValue());
 				ps.setString(++index, item.getDescription());
-				try {
-					lobCreator.setBlobAsBytes(ps, ++index, item.getPicture().getBytes());
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
+				
 			}
 		});
 	}
@@ -83,7 +79,7 @@ public class ItemDaoImpl implements ItemDao {
 		return this.template.query(ItemDaoImpl.SELECT_BY_ITEM_NAME, mapper, itemName + "%");
 	}
 
-	private static final String UPDATE = "UPDATE item SET item_name = ?, price = ?, description = ?, picture = ? WHERE item_id = ?";
+	private static final String UPDATE = "UPDATE item SET item_name = ?, price = ?, description = ? WHERE item_id = ?";
 
 	public void udpate(final Item item) {
 		this.jdbcTemplate.execute(UPDATE, new AbstractLobCreatingPreparedStatementCallback(lobHandler) {
@@ -94,21 +90,17 @@ public class ItemDaoImpl implements ItemDao {
 				ps.setString(++index, item.getItemName());
 				ps.setInt(++index, item.getPrice().intValue());
 				ps.setString(++index, item.getDescription());
-				try {
-					lobCreator.setBlobAsBytes(ps, ++index, item.getPicture().getBytes());
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
+				
 				ps.setInt(++index, item.getItemId().intValue());
 			}
 		});
 	}
 
-	public InputStream getPicture(Integer itemId) {
+	/*public InputStream getPicture(Integer itemId) {
 		return this.template.queryForObject("SELECT picture FROM item WHERE item_id = ?", new RowMapper<InputStream>() {
 			public InputStream mapRow(ResultSet rs, int i) throws SQLException {
 				return lobHandler.getBlobAsBinaryStream(rs, "picture");
 			}
 		}, itemId);
-	}
+	}*/
 }

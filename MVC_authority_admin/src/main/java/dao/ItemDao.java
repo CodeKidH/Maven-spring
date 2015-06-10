@@ -19,5 +19,4 @@ public interface ItemDao {
 
 	void delete(Item item);
 	
-	InputStream getPicture(Integer itemId);
 }

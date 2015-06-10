@@ -17,6 +17,5 @@ public interface ItemService {
 	
 	void deleteItem(Item item);
 	
-	InputStream getPicture(Integer itemId);
 	
 }

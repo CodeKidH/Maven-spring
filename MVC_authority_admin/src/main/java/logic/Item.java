@@ -24,15 +24,6 @@ public class Item implements Serializable {
 	@NotEmpty
 	private String description;
 	
-	private MultipartFile picture;
-
-	public MultipartFile getPicture() {
-		return picture;
-	}
-
-	public void setPicture(MultipartFile picture) {
-		this.picture = picture;
-	}
 
 	public String getDescription() {
 		return this.description;

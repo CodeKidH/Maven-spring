@@ -40,8 +40,5 @@ public class ItemServiceImpl implements ItemService {
 		this.itemDao.udpate(item);
 	}
 
-	public InputStream getPicture(Integer itemId) {
-		return this.itemDao.getPicture(itemId);
-	}
 
 }
