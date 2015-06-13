@@ -115,5 +115,33 @@ public class ItemController {
 		return this.index();
 	}
 
-	
+	@RequestMapping
+	public void image(Integer itemId, HttpServletResponse response) {
+		response.setContentType("image/jpeg");
+		InputStream picture = null;
+		OutputStream os = null;
+		BufferedInputStream bis = null;
+		try {
+			picture = this.itemService.getPicture(itemId);
+			os = response.getOutputStream();
+			bis = new BufferedInputStream(picture);
+			int data;
+			while ((data = bis.read()) != -1) {
+				os.write(data);
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (picture != null) {
+					picture.close();
+					os.close();
+					bis.close();
+				}
+			} catch (IOException e) {
+				// close 안 되는 것뿐이므로 무시한다
+			}
+
+		}
+	}
 }

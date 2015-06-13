@@ -2,54 +2,65 @@ package logic;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer carNo;
+	private Integer itemId;
 
-	private String carName;
+	private String itemName;
 
+	@NotNull
+	@Min(0)
+	private Integer price;
 
 	private String description;
-
-	private String pictureUrl;
 	
-	public Integer getCarNo() {
-		return carNo;
+	private MultipartFile picture;
+
+	public MultipartFile getPicture() {
+		return picture;
 	}
 
-	public void setCarNo(Integer carNo) {
-		this.carNo = carNo;
-	}
-
-	public String getCarName() {
-		return carName;
-	}
-
-	public void setCarName(String carName) {
-		this.carName = carName;
+	public void setPicture(MultipartFile picture) {
+		this.picture = picture;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public String getPictureUrl() {
-		return pictureUrl;
+	public Integer getItemId() {
+		return this.itemId;
 	}
 
-	public void setPictureUrl(String pictureUrl) {
-		this.pictureUrl = pictureUrl;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
-	
+	public String getItemName() {
+		return this.itemName;
+	}
 
-	
-	
-	
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public Integer getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 }

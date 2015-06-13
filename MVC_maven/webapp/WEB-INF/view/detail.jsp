@@ -14,11 +14,11 @@
 		<table>
 			<tr height="50">
 				<td width="80">상품명</td>
-				<td width="160">${item.carName}</td>
+				<td width="160">${item.itemName}</td>
 			</tr>
 			<tr height="50">
 				<td width="80">가격</td>
-				<td width="160">${item.carNo}원</td>
+				<td width="160">${item.price}원</td>
 			</tr>
 			<tr height="50">
 				<td width="80">비고</td>
